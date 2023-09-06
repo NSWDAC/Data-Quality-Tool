@@ -115,7 +115,7 @@ function generateScore(dimension) {
 			accuracyPoint = parseInt(userData[o].points);
 		}
 
-		
+
 	}
 
 	if (dimension == "Institutional Environment") { userScore = userScore + institutionalEnviroPoint }
@@ -197,7 +197,7 @@ function checkOverallStars(){
 function generateHTMLPreview() {
 
 
-	
+
 	// Grab the current user data from localStorage
 	var userData = JSON.parse(localStorage.getItem("setData"));
 
@@ -219,7 +219,7 @@ function generateHTMLPreview() {
 			if (userData[i].id == "A1") { }
 			else if (userData[i].id == "A2") {
 
-				if (userData[i].answer == "yes") { 
+				if (userData[i].answer == "yes") {
 
 					identifySection = identifySection + '<div class="questionanswer" data-id="'+userData[i].id+'"><div class="question">'+userData[i].report+'</div><div class="answer">'+userData[0].answer+'</div></div>';
 
@@ -227,10 +227,10 @@ function generateHTMLPreview() {
 
 				}
 				if (userData[i].answer == "no") {
-					a2Answer = "no"; 
-					institutionalEnviroCross = institutionalEnviroCross + "<li>The agency publishing this data is <u>not</u> the data custodian.</li>";				
+					a2Answer = "no";
+					institutionalEnviroCross = institutionalEnviroCross + "<li>The agency publishing this data is <u>not</u> the data custodian.</li>";
 
-				}			
+				}
 
 			}
 			else if (userData[i].id == "A6") {
@@ -250,7 +250,7 @@ function generateHTMLPreview() {
 
 		if (userData[i].answer != null && userData[i].dimension != "About" && userData[i].dimension != "Contact" && userData[i].report != "null" && userData[i].inreport == true) {
 
-			
+
 			var stopBEight = false;
 
 			if (userData[i].id == "B5") {
@@ -272,14 +272,14 @@ function generateHTMLPreview() {
 
 			}
 
-			if (userData[i].id == "2.5a") {		
+			if (userData[i].id == "2.5a") {
 
 				if (revisionPolicyDone == false) {
 					var htmlString = "<p>"+userData[i].report+userData[i].answer+"</p>";
 					accuracyText = accuracyText + htmlString;
 					revisionPolicyDone = true;
 				}
-			}			
+			}
 
 			if (userData[i].id == "B8") {
 
@@ -294,43 +294,43 @@ function generateHTMLPreview() {
 				}
 			}
 
-			
+
 
 			if (userData[i].qtype == "tick") {
 
 				var htmlString = "<li>"+userData[i].report+"</li>";
-				
+
 				if 		(userData[i].dimension == "Institutional Environment") { institutionalEnviroTicks = institutionalEnviroTicks + htmlString; }
 				else if (userData[i].dimension == "Accuracy") { accuracyTicks = accuracyTicks + htmlString; }
 				else if (userData[i].dimension == "Coherence") { coherenceTicks = coherenceTicks + htmlString; }
 				else if (userData[i].dimension == "Interpretability") { interpretabilityTicks = interpretabilityTicks + htmlString; }
 				else if (userData[i].dimension == "Accessibility") { accessibilityTicks = accessibilityTicks + htmlString; }
-				
+
 
 			}
 			else if (userData[i].qtype == "cross") {
 
 				var htmlString = "<li>"+userData[i].report+"</li>";
-				
+
 				if 		(userData[i].dimension == "Institutional Environment") { institutionalEnviroCross = institutionalEnviroCross + htmlString; }
 				else if (userData[i].dimension == "Accuracy") { accuracyCross = accuracyCross + htmlString; }
 				else if (userData[i].dimension == "Coherence") { coherenceCross = coherenceCross + htmlString; }
 				else if (userData[i].dimension == "Interpretability") { interpretabilityCross = interpretabilityCross + htmlString; }
 				else if (userData[i].dimension == "Accessibility") { accessibilityCross = accessibilityCross + htmlString; }
-				
+
 
 			}
 			else if (userData[i].qtype == "text-report") {
 
 				var htmlString = "<p>"+userData[i].report+"</p>";
-				
+
 				if 		(userData[i].dimension == "Institutional Environment") { institutionalEnviroText = institutionalEnviroText + htmlString; }
 				else if (userData[i].dimension == "Accuracy") { accuracyText = accuracyText + htmlString; }
 				else if (userData[i].dimension == "Coherence") { coherenceText = coherenceText + htmlString; }
 				else if (userData[i].dimension == "Interpretability") { interpretabilityText = interpretabilityText + htmlString; }
 				else if (userData[i].dimension == "Accessibility") { accessibilityText = accessibilityText + htmlString; }
-				else if (userData[i].dimension == "Relevance") { 
-					
+				else if (userData[i].dimension == "Relevance") {
+
 					if (userData[i].subdimension == "scope") { relevanceScope = relevanceScope + htmlString;	}
 					else if (userData[i].subdimension == "geo") { relevanceGeo = relevanceGeo + htmlString; }
 					else if (userData[i].subdimension == "outputs") { relevanceOutputs = relevanceOutputs + htmlString; }
@@ -339,21 +339,21 @@ function generateHTMLPreview() {
 					else if (userData[i].subdimension == "timing") { relevanceTiming = relevanceTiming + htmlString; }
 					else if (userData[i].subdimension == "freq") { relevanceFreq = relevanceFreq + htmlString; }
 
-				}	
-				
+				}
+
 
 			}
 			else if (userData[i].qtype == "text-answer") {
 
 				var htmlString = "<p>"+userData[i].answer+"</p>";
-				
+
 				if 		(userData[i].dimension == "Institutional Environment") { institutionalEnviroText = institutionalEnviroText + htmlString; }
 				else if (userData[i].dimension == "Accuracy") { accuracyText = accuracyText + htmlString; }
 				else if (userData[i].dimension == "Coherence") { coherenceText = coherenceText + htmlString; }
 				else if (userData[i].dimension == "Interpretability") { interpretabilityText = interpretabilityText + htmlString; }
 				else if (userData[i].dimension == "Accessibility") { accessibilityText = accessibilityText + htmlString; }
-				else if (userData[i].dimension == "Relevance") { 
-					
+				else if (userData[i].dimension == "Relevance") {
+
 					if (userData[i].subdimension == "scope") { relevanceScope = relevanceScope + htmlString;	}
 					else if (userData[i].subdimension == "geo") { relevanceGeo = relevanceGeo + htmlString; }
 					else if (userData[i].subdimension == "outputs") { relevanceOutputs = relevanceOutputs + htmlString; }
@@ -362,23 +362,23 @@ function generateHTMLPreview() {
 					else if (userData[i].subdimension == "timing") { relevanceTiming = relevanceTiming + htmlString; }
 					else if (userData[i].subdimension == "freq") { relevanceFreq = relevanceFreq + htmlString; }
 
-				}				
+				}
 
 			}
 			else if (userData[i].qtype == "text-report-answer") {
 
 				var htmlString = "<p>"+userData[i].report+userData[i].answer+"</p>";
-				
+
 				if 		(userData[i].dimension == "Institutional Environment") { institutionalEnviroText = institutionalEnviroText + htmlString; }
 				else if (userData[i].dimension == "Accuracy") { accuracyText = accuracyText + htmlString; }
 				else if (userData[i].dimension == "Coherence") { coherenceText = coherenceText + htmlString; }
 				else if (userData[i].dimension == "Interpretability") { interpretabilityText = interpretabilityText + htmlString; }
 				else if (userData[i].dimension == "Accessibility") { accessibilityText = accessibilityText + htmlString; }
-				else if (userData[i].dimension == "Relevance") { 
-					
+				else if (userData[i].dimension == "Relevance") {
+
 					if (userData[i].subdimension == "scope") { relevanceScope = relevanceScope + htmlString;	}
-					else if (userData[i].subdimension == "geo") { 
-						if (userData[i].id != "B8") { relevanceGeo = relevanceGeo + htmlString; }						
+					else if (userData[i].subdimension == "geo") {
+						if (userData[i].id != "B8") { relevanceGeo = relevanceGeo + htmlString; }
 					}
 					else if (userData[i].subdimension == "outputs") { relevanceOutputs = relevanceOutputs + htmlString; }
 					else if (userData[i].subdimension == "other") { relevanceOther = relevanceOther + htmlString; }
@@ -386,43 +386,43 @@ function generateHTMLPreview() {
 					else if (userData[i].subdimension == "timing") { if (userData[i].id != "B5") { relevanceTiming = relevanceTiming + htmlString; } }
 					else if (userData[i].subdimension == "freq") { relevanceFreq = relevanceFreq + htmlString; }
 
-				}				
+				}
 
 			}
 			else if (userData[i].qtype == "links") {
 
 				var htmlString = userData[i].answer+"<br>";
-				
+
 				if 		(userData[i].dimension == "Institutional Environment") { institutionalEnviroLinks = institutionalEnviroLinks + htmlString; }
 				else if (userData[i].dimension == "Accuracy") { accuracyLinks = accuracyLinks + htmlString; }
 				else if (userData[i].dimension == "Coherence") { coherenceLinks = coherenceLinks + htmlString; }
 				else if (userData[i].dimension == "Interpretability") { interpretabilityLinks = interpretabilityLinks + htmlString; }
 				else if (userData[i].dimension == "Accessibility") { accessibilityLinks = accessibilityLinks + htmlString; }
-				
+
 
 			}
 			else if (userData[i].qtype == "tick-report-answer") {
 
 				var htmlString = "<li>"+userData[i].report+userData[i].answer+"</li>";
-				
+
 				if 		(userData[i].dimension == "Institutional Environment") { institutionalEnviroTicks = institutionalEnviroTicks + htmlString; }
 				else if (userData[i].dimension == "Accuracy") { accuracyTicks = accuracyTicks + htmlString; }
 				else if (userData[i].dimension == "Coherence") { coherenceTicks = coherenceTicks + htmlString; }
 				else if (userData[i].dimension == "Interpretability") { interpretabilityTicks = interpretabilityTicks + htmlString; }
 				else if (userData[i].dimension == "Accessibility") { accessibilityTicks = accessibilityTicks + htmlString; }
-				
+
 
 			}
 			else if (userData[i].qtype == "cross-report-answer") {
 
 				var htmlString = "<li>"+userData[i].report+userData[i].answer+"</li>";
-				
+
 				if 		(userData[i].dimension == "Institutional Environment") { institutionalEnviroCross = institutionalEnviroCross + htmlString; }
 				else if (userData[i].dimension == "Accuracy") { accuracyCross = accuracyCross + htmlString; }
 				else if (userData[i].dimension == "Coherence") { coherenceCross = coherenceCross + htmlString; }
 				else if (userData[i].dimension == "Interpretability") { interpretabilityCross = interpretabilityCross + htmlString; }
 				else if (userData[i].dimension == "Accessibility") { accessibilityCross = accessibilityCross + htmlString; }
-				
+
 
 			}
 
@@ -430,19 +430,19 @@ function generateHTMLPreview() {
 
 		// If the question is in the Indentify dimension and has been answered then add it to the HTML
 		if (userData[i].answer != null && userData[i].dimension == "Contact" && userData[i].report != "null" && userData[i].inreport == true) {
-		
-			contactSection = contactSection + '<div class="questionanswer"><div class="question">'+userData[i].report+'</div><div class="answer">'+userData[i].answer+'</div></div>';		
+
+			contactSection = contactSection + '<div class="questionanswer"><div class="question">'+userData[i].report+'</div><div class="answer">'+userData[i].answer+'</div></div>';
 
 		}
 
 	}
 
 	html = header + identifySection + dataQualityRating
-		   + institutionalEnviroBegin + institutionalEnviroTicks + pointsEnd + institutionalEnviroCross + pointsEnd + textBegin + institutionalEnviroLinks + institutionalEnviroText + textEnd 
+		   + institutionalEnviroBegin + institutionalEnviroTicks + pointsEnd + institutionalEnviroCross + pointsEnd + textBegin + institutionalEnviroLinks + institutionalEnviroText + textEnd
 		   + accuracyBegin + accuracyTicks + pointsEnd + accuracyCross + pointsEnd + textBegin + accuracyLinks + accuracyText + textEnd
-		   + coherenceBegin + coherenceTicks + pointsEnd + coherenceCross + pointsEnd + textBegin + coherenceLinks + coherenceText + textEnd 
-		   + interpretabilityBegin + interpretabilityTicks + pointsEnd + interpretabilityCross + pointsEnd + textBegin + interpretabilityLinks + interpretabilityText + textEnd 
-		   + accessibilityBegin + accessibilityTicks + pointsEnd + accessibilityCross + pointsEnd + textBegin + accessibilityLinks + accessibilityText + textEnd 
+		   + coherenceBegin + coherenceTicks + pointsEnd + coherenceCross + pointsEnd + textBegin + coherenceLinks + coherenceText + textEnd
+		   + interpretabilityBegin + interpretabilityTicks + pointsEnd + interpretabilityCross + pointsEnd + textBegin + interpretabilityLinks + interpretabilityText + textEnd
+		   + accessibilityBegin + accessibilityTicks + pointsEnd + accessibilityCross + pointsEnd + textBegin + accessibilityLinks + accessibilityText + textEnd
 		   + relevanceBegin + relevanceScope + relevanceGeo + relevanceOutputs + relevanceOther + relevanceRef + relevanceTimingBegin + relevanceTiming + relevanceFreq + relevanceEnd
 		   + dataDisclaimer + contactSection + '<br>';
 
