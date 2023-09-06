@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_report
+    - node.type.dqt_question
+id: node.dqt_question.field_report
+field_name: field_report
+entity_type: node
+bundle: dqt_question
+label: Report
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 'null'
+default_value_callback: ''
+settings: {  }
+field_type: string

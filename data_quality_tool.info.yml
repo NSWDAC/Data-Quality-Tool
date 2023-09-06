@@ -1,0 +1,7 @@
+name: 'Data Quality Tool'
+description: 'Port of NSW Data Quality Tool'
+package: 'dqt'
+version: 1.0.0
+
+type: module
+core_version_requirement: ^9 || ^10

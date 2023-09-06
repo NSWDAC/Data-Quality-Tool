@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_q
+    - paragraphs.paragraphs_type.dqt_question
+  module:
+    - text
+id: paragraph.dqt_question.field_q
+field_name: field_q
+entity_type: paragraph
+bundle: dqt_question
+label: Q
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

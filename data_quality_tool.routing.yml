@@ -1,0 +1,18 @@
+data_quality_tool.pdf:
+  path: /data-quality-tool/generate-pdf
+  defaults:
+    _controller: '\Drupal\data_quality_tool\Controller\DQTController::pdf'
+  requirements:
+    _permission: access content
+data_quality_tool.docx:
+  path: /data-quality-tool/generate-docx
+  defaults:
+    _controller: '\Drupal\data_quality_tool\Controller\DQTController::docx'
+  requirements:
+    _permission: access content
+data_quality_tool.xml:
+  path: /data-quality-tool/generate-xml
+  defaults:
+    _controller: '\Drupal\data_quality_tool\Controller\DQTController::xml'
+  requirements:
+    _permission: access content

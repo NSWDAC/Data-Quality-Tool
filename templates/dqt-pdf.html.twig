@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+	<title>Data Quality Tool</title>
+	{# <link type="text/css" href="/download/pdf.style.css" media="all"> #}
+  <style>
+
+/*----
+
+CSS for Data Quality Tool
+
+2015 The Project Factory
+
+----*/
+body, html {
+  color: #000000;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Arial,sans-serif;
+  font-size: 87.5%;
+  line-height: 1.6em; }
+
+#main-wrapper {
+  z-index: 10;
+  max-width: 1020px;
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100%;
+  margin-bottom: -290px; }
+
+.headertext {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1em;
+  margin-bottom: 20px; }
+
+.heading_understand {
+  width: 100%;
+  height: 62px;
+  background-image: url("{{ directory }}/images/header_test.png");
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: #FFFFFF;
+  font-weight: bold;
+  line-height: 55px;
+  font-size: 1.3em;
+  padding-left: 68px; }
+
+.heading_about {
+  width: 100%;
+  height: 62px;
+  background-image: url("{{ directory }}/images/header_about.png");
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: #FFFFFF;
+  font-weight: bold;
+  line-height: 54px;
+  font-size: 1.3em;
+  padding-left: 68px;
+  margin-top: 40px; }
+
+.heading_evaluating {
+  width: 100%;
+  height: 62px;
+  background-image: url("{{ directory }}/images/header_evaluating.png");
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: #FFFFFF;
+  font-weight: bold;
+  line-height: 54px;
+  font-size: 1.3em;
+  padding-left: 68px;
+  margin-top: 40px; }
+
+p {
+  padding: 0 30px;
+  padding-top: 0;
+  margin-top: 5px; }
+
+.top, .bottom {
+  width: 40%;
+  position: relative;
+  height: 40px;
+  background-color: #c60c30;
+  text-align: center;
+  color: #FFFFFF;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 1.2em;
+  line-height: 40px; }
+
+.top {
+  -webkit-border-top-left-radius: 9px;
+  -webkit-border-top-right-radius: 9px;
+  -moz-border-radius-topleft: 9px;
+  -moz-border-radius-topright: 9px;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px; }
+
+.bottom {
+  background-color: #eeeeee;
+  color: #000000;
+  font-size: 1em;
+  -webkit-border-bottom-right-radius: 9px;
+  -webkit-border-bottom-left-radius: 9px;
+  -moz-border-radius-bottomright: 9px;
+  -moz-border-radius-bottomleft: 9px;
+  border-bottom-right-radius: 9px;
+  border-bottom-left-radius: 9px; }
+
+.top .number, .bottom .number {
+  width: 33%;
+  float: right; }
+
+.questionanswer, .dimension_questionanswer {
+  width: 100%;
+  position: relative;
+  margin-bottom: 10px;
+  background: #eeeeee;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  -ms-border-radius: 9px;
+  border-radius: 9px; }
+  .questionanswer .question, .dimension_questionanswer .question {
+    float: left;
+    background: #002664;
+    width: 42%;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 1.1em;
+    -webkit-border-top-left-radius: 9px;
+    -webkit-border-bottom-left-radius: 9px;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-bottomleft: 9px;
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+    padding: 2% 2%; }
+  .questionanswer .answer, .dimension_questionanswer .answer {
+    float: right;
+    width: 50%;
+    color: #000000;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 2% 2%; }
+
+.dimension_questionanswer {
+  width: 85%;
+  margin: 0 auto;
+  margin-bottom: 20px; }
+  .dimension_questionanswer .question {
+    background: #c60c30;
+    width: 40%; }
+  .dimension_questionanswer .answer {
+    font-weight: normal;
+    width: 51%; }
+
+.heading_dql {
+  width: 100%;
+  height: 40px;
+  color: #FFFFFF;
+  font-weight: bold;
+  line-height: 40px;
+  font-size: 1.3em;
+  text-align: center;
+  margin-top: 40px;
+  background: #002664;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  -ms-border-radius: 9px;
+  border-radius: 9px; }
+
+.heading_dimension {
+  width: 83%;
+  height: 75px;
+  background-image: url("{{ directory }}/images/header_dimension.png");
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: #FFFFFF;
+  font-weight: bold;
+  line-height: 50px;
+  font-size: 1.2em;
+  padding-left: 60px;
+  margin: 0 auto;
+  margin-top: 20px; }
+  .heading_dimension .result {
+    float: left;
+    width: 20%;
+    color: #000000;
+    font-size: 0.9em; }
+  .heading_dimension .title {
+    float: left;
+    width: 48%; }
+  .heading_dimension .image {
+    float: right;
+    width: 10%;
+    right: 0;
+    text-align: right;
+    padding: 13px 10px 0 0; }
+
+.points {
+  width: 85%;
+  background: #eeeeee;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  -ms-border-radius: 9px;
+  border-radius: 9px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  margin-top: -15px; }
+
+.disclaimer {
+  font-weight: bold;
+  font-size: 0.8em;
+  margin-top: 40px;
+  line-height: 1.2em; }
+
+/*# sourceMappingURL=pdf.style.css.map */
+
+
+  </style>
+</head>
+
+<body>
+  {% autoescape false  %}
+    {{ content|replace({'/themes/custom/datansw': directory})|raw}}
+  {% endautoescape %}
+  <div class="heading_understand">Understanding the Data Quality Statement</div>
+	<p>The data quality statement aims to help you understand how a particular dataset could be used and whether it can be compared with other, similar datasets. It provides a description of the characteristics of the data to help you decide whether the data will be fit for your specific purpose.</p>
+	<p><strong>About the quality rating:</strong></p>
+	<p>The reporting questionnaire asks five questions for each of these data quality dimensions:</p>
+	<ul>
+		<li>Institutional Environment</li>
+		<li>Accuracy</li>
+		<li>Coherence</li>
+		<li>Interpretability</li>
+		<li>Accessibility</li>
+	</ul>
+	<p>For each question: “yes” = 1 point; “no” = 0 points</p>
+	<p>The number of points determines the Quality Level for each dimension (high, medium, low).</p>
+	<p>Only dimensions with four or five points receive a star.</p>
+	<table>
+		<tr class="first">
+			<td class="first">Points</td>
+			<td class="first">Quality Level</td>
+			<td class="first">Star / No Star</td>
+		</tr>
+		<tr>
+			<td>0</td>
+			<td>LOW</td>
+			<td>No Star</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>LOW</td>
+			<td>No Star</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>LOW</td>
+			<td>No Star</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>MEDIUM</td>
+			<td>No Star</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>MEDIUM</td>
+			<td>Star</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>HIGH</td>
+			<td>Star</td>
+		</tr>
+	</table>
+	<br>
+	  <p><strong>More information?</strong></p>
+	  <p>The data quality reporting questionnaire and further explanation of the data quality dimensions is provided in the NSW Government Standard for Data Quality Reporting published at <a href="https://data.nsw.gov.au/data-policy" target="_blank">https://data.nsw.gov.au/data-policy</a></p>
+	  <br>
+
+	    <div class="heading_evaluating">Evaluating data quality</div>
+	    <p>Quality relates to the data’s “fitness for purpose”. Users can make different assessments about the data quality of the same data, depending on their “purpose” or the way they plan to use the data.</p>
+	    <p>The following questions may help you evaluate data quality for your requirements. This list is not exhaustive. Generate your own questions to assess data quality according to your specific needs and environment.</p>
+	    <ul>
+		    <li>What was the primary purpose or aim for collecting the data?</li>
+		    <li>How well does the coverage (and exclusions) match your needs?</li>
+		    <li>How useful are these data at small levels of geography?</li>
+		    <li>Does the population presented by the data match your needs?</li>
+		    <li>To what extent does the method of data collection seem appropriate for the information being gathered?</li>
+		    <li>Have standard classifications (eg industry or occupation classifications) been used in the collection of the data? If not, why? Does this affect the ability to compare or bring together data from different sources?</li>
+		    <li>Have rates and percentages been calculated consistently throughout the data?</li>
+		    <li>Is there a time difference between your reference period, and the reference period of the data?</li>
+		    <li>What is the gap of time between the reference period (when the data were collected) and the release date of the data?</li>
+		    <li>Will there be subsequent surveys or data collection exercises for this topic?</li>
+		    <li>Are there likely to be updates or revisions to the data after official release?</li>
+	    </ul>
+</body></html>

@@ -1,0 +1,134 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.dqt_question.body
+    - field.field.node.dqt_question.field_choices
+    - field.field.node.dqt_question.field_dimension
+    - field.field.node.dqt_question.field_ignored_questions
+    - field.field.node.dqt_question.field_next_question
+    - field.field.node.dqt_question.field_points
+    - field.field.node.dqt_question.field_report
+    - field.field.node.dqt_question.field_type
+    - node.type.dqt_question
+  module:
+    - text
+id: node.dqt_question.default
+targetEntityType: node
+bundle: dqt_question
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 1
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  field_choices:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        f6aba8ab-a2b9-40c1-a3da-ef729ac14b6f:
+          dependee: field_type
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 3
+            value: ''
+            values: "check\r\nradio\r\nselect"
+            value_form: {  }
+            effect: show
+            effect_options: {  }
+            selector: ''
+            field_type:
+              -
+                value: yes-no
+          entity_type: node
+          bundle: dqt_question
+    type: string_textfield
+    region: content
+  field_dimension:
+    weight: 26
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_ignored_questions:
+    weight: 28
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings:
+      conditional_fields:
+        66c92219-e700-4f28-986c-78b9906074b6:
+          dependee: field_type
+          settings:
+            state: visible
+            condition: value
+            grouping: AND
+            values_set: 1
+            value: ''
+            values: {  }
+            value_form:
+              -
+                value: yes-no
+            effect: show
+            effect_options: {  }
+            selector: ''
+          entity_type: node
+          bundle: dqt_question
+    type: string_textfield
+    region: content
+  field_next_question:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_points:
+    weight: 29
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_report:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_type:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

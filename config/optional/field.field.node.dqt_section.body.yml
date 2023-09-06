@@ -1,0 +1,25 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.dqt_section
+  module:
+    - text
+id: node.dqt_section.body
+field_name: body
+entity_type: node
+bundle: dqt_section
+label: 'About the Tool'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    summary: ''
+    value: "<p>This&nbsp;tool&nbsp;is designed to support the&nbsp;<em>NSW Government Standard for Data Quality Reporting</em>. It will guide you through the reporting questionnaire and generate a standard data quality statement.</p>\r\n\r\n<p>The statement helps a user understand how a particular dataset could be used and whether it can be compared with other, similar datasets. It provides a description of the characteristics of the data to help the user decide whether the data will be fit for their specific purpose.</p>\r\n\r\n<p>The data quality statement can be produced as an editable MS Word document or a publishable PDF document. It can also be output as in XML. As you complete the questionnaire, the&nbsp;tool&nbsp;with gather metadata to support registration of the dataset onto&nbsp;<a href=\"http://data.nsw.gov.au/\" target=\"_blank\">www.data.nsw.gov.au</a>&nbsp;or the Information Asset Register.</p>\r\n\r\n<p>Find out more about the data quality dimensions, the reporting questionnaire and the star rating in the&nbsp;<em>NSW Government Standard for Data Quality Reporting</em>&nbsp;published at:<br />\r\n<a href=\"http://finance.nsw.gov.au/ict/data-interoperability-standards\" target=\"_blank\">http://finance.nsw.gov.au/ict/data-interoperability-standards</a></p>\r\n"
+    format: basic_html
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary
