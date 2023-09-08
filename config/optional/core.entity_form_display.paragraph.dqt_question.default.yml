@@ -1,0 +1,34 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.dqt_question.field_q
+    - field.field.paragraph.dqt_question.field_report
+    - paragraphs.paragraphs_type.dqt_question
+  module:
+    - text
+id: paragraph.dqt_question.default
+targetEntityType: paragraph
+bundle: dqt_question
+mode: default
+content:
+  field_q:
+    weight: 0
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_report:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  status: true
+  uid: true

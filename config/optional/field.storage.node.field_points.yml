@@ -1,0 +1,20 @@
+uuid: 89d51446-f14a-4863-8635-00d99413ea3a
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_points
+field_name: field_points
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

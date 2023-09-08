@@ -1,0 +1,277 @@
+/*
+////////////////////////////////////////////////////////////////////////////////
+///////// Mixins
+/////////////////////////////////////////////////////////
+*/
+
+@mixin userSelect {
+	-webkit-touch-callout:	none;
+	-webkit-user-select:	none;
+	-moz-user-select:		none;
+	-ms-user-select:		none;
+	user-select:			none;
+}
+
+@mixin transform($value) {
+	-webkit-transform:	$value;
+	-moz-transform:		$value;
+	-ms-transform:		$value;
+	transform:			$value;
+}
+
+@mixin keyframeAnimation($animKeyFramesName, $duration, $delay, $iterations, $fillMode) {
+	-webkit-animation-name:$animKeyFramesName;
+	-webkit-animation-duration:$duration;
+	-webkit-animation-delay:$delay;
+	-webkit-animation-iteration-count:$iterations;
+	-moz-animation-name:$animKeyFramesName;
+	-moz-animation-duration:$duration;
+	-moz-animation-delay:$delay;
+	-moz-animation-iteration-count:$iterations;
+	-ms-animation-name:$animKeyFramesName;
+	-ms-animation-duration:$duration;
+	-ms-animation-delay:$delay;
+	-ms-animation-iteration-count:$iterations;
+	animation-name:$animKeyFramesName;
+	animation-duration:$duration;
+	animation-delay:$delay;
+	animation-iteration-count:$iterations;
+
+	// Might need to be a modifiable property
+	-webkit-animation-fill-mode: $fillMode;
+	-moz-animation-fill-mode: $fillMode;
+	-ms-animation-fill-mode: $fillMode;
+	animation-fill-mode: $fillMode;
+}
+
+@mixin defineKeyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+/*@mixin transition($props, $timing, $method) {
+	-webkit-transition: $props $timing $method;
+	-moz-transition:	$props $timing $method;
+	-ms-transition:		$props $timing $method;
+	transition:			$props $timing $method;
+}*/
+
+@mixin transition($statement...) {
+	-webkit-transition: $statement;
+	-moz-transition:	$statement;
+	-ms-transition:		$statement;
+	transition:			$statement;
+}
+
+
+@mixin transitionWithPrefix($prop, $timing, $method) {
+	-webkit-transition: -webkit-#{$prop} $timing $method;
+	-moz-transition:	-moz-#{$prop} $timing $method;
+	-ms-transition:		-ms-#{$prop} $timing $method;
+	transition:			$prop $timing $method;
+}
+
+@mixin prefixProperty($propName, $val) {
+	-webkit-#{$propName}: $val;
+	-moz-#{$propName}: $val;
+	-ms-#{$propName}: $val;
+	#{$propName}: $val;
+}
+
+
+/*
+////////////////////////////////////////////////////////////////////////////////
+///////// LIGHTBOX STYLES
+/////////////////////////////////////////////////////////
+*/
+
+.popover-lightbox {
+	display:none;
+	position:fixed; z-index:100;
+	top:0; left:0;
+	width:100%; height:100%;
+	border:none;
+	background:transparent;
+
+	@include prefixProperty(animation-iteration-count, 1);
+
+	.popover-lightbox-content {
+		position:absolute; z-index:2;
+		left:0; top:0; right:0; bottom:0;
+		margin:auto; padding:20px;
+		width:400px; height:300px;
+		opacity:0;
+
+		&.background { background:white; }
+		&.border { border:1px solid #ddd; }
+	}
+
+	/* Buttons in Lightboxes */
+	.BTLightbox {
+		display:none;
+		color:#fff; text-align:center; line-height:40px;
+		text-transform:uppercase;
+		cursor:pointer;
+		background-color:black;
+
+		@include userSelect;
+		@include transitionWithPrefix(transform, 0.15s, ease-out);
+
+		&:hover { @include transform(scale(1.1)); }
+		&:active { @include transform(scale(0.9)); }
+	}
+
+	.popover-lightbox-close {
+		position:absolute;
+		top:-41px; right:0;
+		width:85px; height:40px;
+
+		&[data-display="true"] { display:block; }
+	}
+
+	.feedbackButtons {
+		position:absolute;
+		top:100%; left:0;
+		width:100%; text-align:right;
+
+		.popover-lightbox-confirm, .popover-lightbox-cancel {
+			height:40px;
+			padding:0 15px; margin-left:12px;
+
+			&[data-display="true"] { display:inline-block; }
+		}
+	}
+
+	.content {
+		max-height:100%;
+		overflow-y:auto;
+
+		&.autoSize { max-height:none; }
+	}
+
+	/* Aligns the lightbox to the window */
+	&[data-align="center"]		.popover-lightbox-content { left:0; top:0; right:0; bottom:0; }
+	&[data-align="topLeft"]		.popover-lightbox-content { right:auto; bottom:auto; }
+	&[data-align="top"]			.popover-lightbox-content { bottom:auto; }
+	&[data-align="topRight"]	.popover-lightbox-content { left:auto; bottom:auto; }
+	&[data-align="right"]		.popover-lightbox-content { left:auto; }
+	&[data-align="bottomRight"]	.popover-lightbox-content { left:auto; top:auto; }
+	&[data-align="bottom"]		.popover-lightbox-content { top:auto; }
+	&[data-align="bottomLeft"]	.popover-lightbox-content { right:auto; top:auto; }
+	&[data-align="left"]		.popover-lightbox-content { right:auto; }
+
+	/* Aligns the lightbox content internally */
+	&[data-contentalign="left"]	{ text-align:left; }
+	&[data-contentalign="right"] { text-align:right; }
+	&[data-contentalign="center"] { text-align:center; }
+
+	.popover-lightbox-blackener {
+		width:100%; height:100%;
+
+		&[data-color="black"] { background:black; opacity:0.4; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";}
+		&[data-color="transparent"] { background:transparent; }
+		&[data-color="white"] { background:white; opacity:0.4; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";}
+
+		&.off { opacity:0; display:none; }
+	}
+	
+	// Apply 3D transitions to animating elements
+	&[data-state="-animatingin"], &[data-state="-animatingout"] { @include transform(translate3d(0,0,0)); }
+
+	// Show the lightbox
+	&[data-state="-animatingin"], &[data-state="-animatingout"], &[data-state="-animatingvisible"] { display:block; }
+
+	// Show the lightbox content
+	&[data-state="-visible"] .popover-lightbox-content { opacity:1; }
+	
+	// Animate in
+	&[data-state="-animatingin"][data-transition="default"] 	.popover-lightbox-content	{ @include keyframeAnimation(defaultin, 0.75s, 0s, 1, forwards); }
+	&[data-state="-animatingin"][data-transition="scaleup"] 	.popover-lightbox-content	{ @include keyframeAnimation(scaleupin, 0.75s, 0s, 1, forwards); }
+	&[data-state="-animatingin"][data-transition="scaledown"] 	.popover-lightbox-content	{ @include keyframeAnimation(scaledownin, 0.75s, 0s, 1, forwards); }
+	&[data-state="-animatingin"][data-transition="fade"] 		.popover-lightbox-content	{ @include keyframeAnimation(fadein, 0.75s, 0s, 1, forwards); }
+	&[data-state="-animatingin"][data-transition="slidetop"] 	.popover-lightbox-content	{ @include keyframeAnimation(slidetopin, 0.75s, 0s, 1, forwards); }
+	
+	&[data-state="-animatingin"] { @include keyframeAnimation(showContainer, 0.75s, 0s, 1, forwards); }
+	
+	// Animate out
+	&[data-state="-animatingout"][data-transition="default"] 	.popover-lightbox-content	{ @include keyframeAnimation(defaultout, 0.75s, 0s, 1, forwards); }
+	&[data-state="-animatingout"][data-transition="scaleup"] 	.popover-lightbox-content	{ @include keyframeAnimation(scaleupout, 0.75s, 0s, 1, fowards); }
+	&[data-state="-animatingout"][data-transition="scaledown"] 	.popover-lightbox-content	{ @include keyframeAnimation(scaledownout, 0.75s, 0s, 1, forwards); }
+	&[data-state="-animatingout"][data-transition="fade"] 		.popover-lightbox-content	{ @include keyframeAnimation(fadeout, 0.75s, 0s, 1, forwards); }
+	&[data-state="-animatingout"][data-transition="slidetop"] 	.popover-lightbox-content	{ @include keyframeAnimation(slidetopout, 0.75s, 0s, 1, forwards); }
+	
+	&[data-state="-animatingout"] { @include keyframeAnimation(hideContainer, 0.75s, 0s, 1, forwards); }
+
+}
+
+@include defineKeyframes(defaultin) {
+	0%   	{ opacity:0; }
+	100% 	{ opacity:1; }
+}
+
+@include defineKeyframes(scaleupin) {
+	0%   	{ opacity:0; @include transform(translate(0, 80px) scale(0.9)); }
+	100% 	{ opacity:1; @include transform(translate(0, 0) scale(1)); }
+}
+
+@include defineKeyframes(scaledownin) {
+	0%   	{ opacity:0; @include transform(translate(0, -80px) scale(0.9)); }
+	100% 	{ opacity:1; @include transform(translate(0, 0) scale(1)); }
+}
+
+@include defineKeyframes(fadein) {
+	0%   	{ opacity:0; }
+	100% 	{ opacity:1; }
+}
+
+@include defineKeyframes(slidetopin) { // Use CSS to presit popover-lightbox-content offscreen - these keyframes will reset them to 0
+	0%   	{ opacity:0; }
+	100% 	{ opacity:1; top:0; }
+}
+
+@include defineKeyframes(defaultout) {
+	0% 		{ opacity:1; }
+	100%   	{ opacity:0; }
+}
+
+@include defineKeyframes(scaleupout) {
+	0% 		{ opacity:1; @include transform(translate(0, 0) scale(1)); }
+	100%   	{ opacity:0; @include transform(translate(0, -80px) scale(0.9)); }
+}
+
+@include defineKeyframes(scaledownout) {
+	0% 		{ opacity:1; @include transform(translate(0, 0) scale(1)); }
+	100%  	{ opacity:0; @include transform(translate(0, 80px) scale(0.9)); }
+}
+
+@include defineKeyframes(fadeout) {
+	0% 		{ opacity:1; }
+	100%   	{ opacity:0; }
+}
+
+@include defineKeyframes(slidetopout) { // Use CSS to presit popover-lightbox-content offscreen - these keyframes will reset them to 0
+	0%   	{ opacity:1; top:0; }
+	100% 	{ opacity:0; }
+}
+
+@include defineKeyframes(showContainer) {
+	0% 		{ left:-500%;}
+	1%   	{ left:0; }
+	100%	{}
+}
+
+@include defineKeyframes(hideContainer) {
+	0% 		{}
+	99%		{ left:0; }
+	100%	{ left:-500%; }
+}

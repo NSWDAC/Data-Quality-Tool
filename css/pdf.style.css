@@ -1,0 +1,220 @@
+/*----
+
+CSS for Data Quality Tool
+
+2015 The Project Factory
+
+----*/
+body, html {
+  color: #000000;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Arial,sans-serif;
+  font-size: 87.5%;
+  line-height: 1.6em; }
+
+#main-wrapper {
+  z-index: 10;
+  max-width: 1020px;
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100%;
+  margin-bottom: -290px; }
+
+.headertext {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1em;
+  margin-bottom: 20px; }
+
+.heading_understand {
+  width: 100%;
+  height: 62px;
+  background-image: url("{{ directory }}/images/header_test.png");
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: #FFFFFF;
+  font-weight: bold;
+  line-height: 55px;
+  font-size: 1.3em;
+  padding-left: 68px; }
+
+.heading_about {
+  width: 100%;
+  height: 62px;
+  background-image: url("{{ directory }}/images/header_about.png");
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: #FFFFFF;
+  font-weight: bold;
+  line-height: 54px;
+  font-size: 1.3em;
+  padding-left: 68px;
+  margin-top: 40px; }
+
+.heading_evaluating {
+  width: 100%;
+  height: 62px;
+  background-image: url("{{ directory }}/images/header_evaluating.png");
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: #FFFFFF;
+  font-weight: bold;
+  line-height: 54px;
+  font-size: 1.3em;
+  padding-left: 68px;
+  margin-top: 40px; }
+
+p {
+  padding: 0 30px;
+  padding-top: 0;
+  margin-top: 5px; }
+
+.top, .bottom {
+  width: 40%;
+  position: relative;
+  height: 40px;
+  background-color: #c60c30;
+  text-align: center;
+  color: #FFFFFF;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 1.2em;
+  line-height: 40px; }
+
+.top {
+  -webkit-border-top-left-radius: 9px;
+  -webkit-border-top-right-radius: 9px;
+  -moz-border-radius-topleft: 9px;
+  -moz-border-radius-topright: 9px;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px; }
+
+.bottom {
+  background-color: #eeeeee;
+  color: #000000;
+  font-size: 1em;
+  -webkit-border-bottom-right-radius: 9px;
+  -webkit-border-bottom-left-radius: 9px;
+  -moz-border-radius-bottomright: 9px;
+  -moz-border-radius-bottomleft: 9px;
+  border-bottom-right-radius: 9px;
+  border-bottom-left-radius: 9px; }
+
+.top .number, .bottom .number {
+  width: 33%;
+  float: right; }
+
+.questionanswer, .dimension_questionanswer {
+  width: 100%;
+  position: relative;
+  margin-bottom: 10px;
+  background: #eeeeee;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  -ms-border-radius: 9px;
+  border-radius: 9px; }
+  .questionanswer .question, .dimension_questionanswer .question {
+    float: left;
+    background: #002664;
+    width: 42%;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 1.1em;
+    -webkit-border-top-left-radius: 9px;
+    -webkit-border-bottom-left-radius: 9px;
+    -moz-border-radius-topleft: 9px;
+    -moz-border-radius-bottomleft: 9px;
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+    padding: 2% 2%; }
+  .questionanswer .answer, .dimension_questionanswer .answer {
+    float: right;
+    width: 50%;
+    color: #000000;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 2% 2%; }
+
+.dimension_questionanswer {
+  width: 85%;
+  margin: 0 auto;
+  margin-bottom: 20px; }
+  .dimension_questionanswer .question {
+    background: #c60c30;
+    width: 40%; }
+  .dimension_questionanswer .answer {
+    font-weight: normal;
+    width: 51%; }
+
+.heading_dql {
+  width: 100%;
+  height: 40px;
+  color: #FFFFFF;
+  font-weight: bold;
+  line-height: 40px;
+  font-size: 1.3em;
+  text-align: center;
+  margin-top: 40px;
+  background: #002664;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  -ms-border-radius: 9px;
+  border-radius: 9px; }
+
+.heading_dimension {
+  width: 83%;
+  height: 75px;
+  background-image: url("{{ directory }}/images/header_dimension.png");
+  background-position: top left;
+  background-repeat: no-repeat;
+  background-size: contain;
+  color: #FFFFFF;
+  font-weight: bold;
+  line-height: 50px;
+  font-size: 1.2em;
+  padding-left: 60px;
+  margin: 0 auto;
+  margin-top: 20px; }
+  .heading_dimension .result {
+    float: left;
+    width: 20%;
+    color: #000000;
+    font-size: 0.9em; }
+  .heading_dimension .title {
+    float: left;
+    width: 48%; }
+  .heading_dimension .image {
+    float: right;
+    width: 10%;
+    right: 0;
+    text-align: right;
+    padding: 13px 10px 0 0; }
+
+.points {
+  width: 85%;
+  background: #eeeeee;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  -ms-border-radius: 9px;
+  border-radius: 9px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  margin-top: -15px; }
+
+.disclaimer {
+  font-weight: bold;
+  font-size: 0.8em;
+  margin-top: 40px;
+  line-height: 1.2em; }
+
+/*# sourceMappingURL=pdf.style.css.map */

@@ -1,0 +1,9 @@
+uuid: 353fd9e4-72ea-42c9-87d4-76aa2fad581b
+langcode: en
+status: true
+dependencies: {  }
+id: dqt_question
+label: 'DQT Question'
+icon_uuid: null
+description: ''
+behavior_plugins: {  }

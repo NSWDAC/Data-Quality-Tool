@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_points
+    - node.type.dqt_question
+id: node.dqt_question.field_points
+field_name: field_points
+entity_type: node
+bundle: dqt_question
+label: Points
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 0
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

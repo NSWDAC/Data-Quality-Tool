@@ -1,0 +1,21 @@
+dqt:
+  version: 1.x
+  css:
+    component:
+      # css/ict.style.css: {}
+      css/popover.lightbox.styles.css: {}
+      css/dqt.style.css: {}
+  js:
+    js/vendor/modernizr.custom.48314.js: {}
+    js/mod.popover.js: {}
+    js/script.popovers.js: {}
+    js/dqt.agency.script.js: {}
+    js/dqt.cleanAnswers.script.js: {}
+    js/dqt.goToScroll.script.js: {}
+    js/dqt.userData.script.js: {}
+    js/dqt.generatehtml.script.js: {}
+    js/dqt.generatepreview.script.js: {}
+    js/dqt.generatedocjson.script.js: {}
+    js/dqt.script.js: {}
+  dependencies:
+    - core/jquery

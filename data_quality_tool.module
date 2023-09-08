@@ -1,0 +1,151 @@
+<?php
+
+/**
+ * @file
+ * Contains data_quality_tool.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Menu\MenuTreeParameters;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
+
+
+/**
+ * Implements hook_help().
+ */
+function data_quality_tool_help($route_name, RouteMatchInterface $route_match)
+{
+    switch ($route_name) {
+        // Main module help for the data_quality_tool module.
+        case 'help.page.data_quality_tool':
+            $output = '';
+            $output .= '<h3>' . t('About') . '</h3>';
+            $output .= '<p>' . t('Port of NSW Data Quality Tool') . '</p>';
+            return $output;
+
+        default:
+    }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function data_quality_tool_theme()
+{
+    return [
+        'dqt_pdf' => [
+            'variables' => ['content' => NULL]
+        ],
+    ];
+}
+
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function data_quality_tool_preprocess_node(&$variables)
+{
+    $node = $variables['node'];
+    switch ($node->getType()) {
+        case 'dqt_section':
+            $menu_tree = \Drupal::service('menu.link_tree');
+            $manipulators = array(
+                array('callable' => 'menu.default_tree_manipulators:generateIndexAndSort'),
+            );
+            $tree = $menu_tree->load('dqt-stages', new MenuTreeParameters());
+            $tree = $menu_tree->transform($tree, $manipulators);
+            $variables['stages'] = $menu_tree->build($tree);
+
+            $tree = $menu_tree->load('dqt-dimensions', new MenuTreeParameters());
+            $tree = $menu_tree->transform($tree, $manipulators);
+            $variables['dimensions'] = $menu_tree->build($tree);
+
+            $variables['questions'] = array_reduce(
+                $node->get('field_question')->referencedEntities(),
+                '_data_quality_tool_reduce_section_questions',
+                []
+            );
+
+            break;
+        case 'dqt_question':
+            break;
+    }
+    $breadcrumb = [
+        Link::fromTextAndUrl('Homepage', Url::fromRoute('<front>')),
+        ['text' => 'Data Quality Reporting Tool'],
+        ['text' => $node->getTitle()]
+    ];
+    $variables['breadcrumb'] = $breadcrumb;
+
+}
+
+
+function _data_quality_tool_prepare_data_attributes($attributes)
+{
+    $global_attributes = [];
+    foreach ($attributes as &$attr) {
+        if ($attr === '-') {
+            $attr = [];
+            continue;
+        }
+        $attr = explode("\n", $attr);
+        foreach ($attr as $k => $v) {
+            if (strpos($v, '!') === 0) {
+                unset($attr[$k]);
+                $global_attributes[] = ltrim($v, '!');
+            }
+        }
+    }
+    return [$attributes, $global_attributes];
+}
+
+
+function _data_quality_tool_reduce_section_questions($questions, $node)
+{
+    $clean_explode = function ($divider, $line) {
+        return array_map('trim', explode($divider, $line));
+    };
+    list($attributes, $global_attributes) = _data_quality_tool_prepare_data_attributes(
+        $clean_explode(',', $node->get('field_data')->getString())
+    );
+    $dimensions = explode('|', $node->get('field_dimension')->getString());
+    $qi = [
+        'title' => $node->getTitle(),
+        'body' => $node->get('body')->view('default'),
+        'type' => $node->get('field_type')->getString(),
+        'reports' => $clean_explode(',', $node->get('field_report')->getString()),
+        'next_question' => $clean_explode(',', $node->get('field_next_question')->getString()),
+        'ignored_questions' => $clean_explode(',', $node->get('field_ignored_questions')->getString()),
+        'points' => $clean_explode(',', $node->get('field_points')->getString()),
+        'attributes' => $attributes,
+        'global_attributes' => $global_attributes,
+        'dimension' => reset($dimensions),
+        'subdimension' => isset($dimensions[1]) ? $dimensions[1] : NULL,
+        'goto' => '',
+        'active' => !(bool) count($questions),
+    ];
+    switch ($qi['type']) {
+        case 'agencies':
+            $nids = \Drupal::entityQuery('node')->accessCheck(FALSE)->condition('type', 'agency')->sort('title')->execute();
+            $nodes = Node::loadMultiple($nids);
+            $titles = array_map(function ($node) {
+                return $node->getTitle(); }, $nodes);
+            // $agencies = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->loadTree('agencies');
+            $qi['choices'] = implode('|', $titles);
+            break;
+        case 'multiple-select':
+            $qi['choices'] = $clean_explode('|', $node->get('field_multiple_choices')->getString());
+            break;
+        default:
+            $qi['choices'] = $clean_explode(',', $node->get('field_choices')->getString());
+    }
+
+    $len = count($questions);
+    if ($len) {
+        $questions[$len - 1]['goto'] = $qi['title'];
+    }
+    $questions[] = $qi;
+    return $questions;
+}
