@@ -127,7 +127,7 @@ function getAgents() {
 
 		// Add instructions
 		var div = document.createElement('div');
-		div.innerHTML = "Please choose a matching agency below:";
+		div.innerHTML = "Please type the name of your organisation";
 		div.className = "instructions";
 		fragment.appendChild(div);
 
@@ -252,7 +252,7 @@ function getAgents() {
 
 		// Add instructions
 		var div = document.createElement('div');
-		div.textContent = "Please choose a matching agency below:";
+		div.textContent = "Please type the name of your organisation";
 		div.className = "instructions";
 		fragment.appendChild(div);
 
